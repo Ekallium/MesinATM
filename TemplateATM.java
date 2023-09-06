@@ -24,7 +24,9 @@ import java.util.Scanner;
                     case 4:
                     default :
                         System.out.println("Dimohon masukkan angka yang terdapat pada pilihan diatas");
+                        break; }
                 }   
+                while (!exit){
                 System.out.println("Apakah anda ingin melakukan transaksi lain Y/T"); 
                     char transaksi = scan.next().charAt(0);
                     if (!exit){
@@ -35,6 +37,7 @@ import java.util.Scanner;
                     else if (transaksi =='y' || transaksi == 'Y'){
 
                         exit = false;
+                    
                     }
                 }
             }
