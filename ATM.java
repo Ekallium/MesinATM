@@ -4,8 +4,8 @@ public class ATM {
 
     static Scanner scan = new Scanner(System.in);
     static String[][] infoAkun = {
-            { "Ekal" , "Moch. Haikal Putra Muhajir" },
-            { "Alya" , "Alya Ajeng Ayu" },
+            { "Ekal", "Moch. Haikal Putra Muhajir" },
+            { "Alya", "Alya Ajeng Ayu" },
             { "Erfin", "Erfin Jauhari Dwi Brian" }
     };
     static int[][] nominal = {
@@ -13,9 +13,22 @@ public class ATM {
             { 181104, 1000000, 23417602 },
             { 170405, 1000000, 23417603 }
     };
+    static boolean menu = false;
+    static boolean online = true;
+    static int user = -1;
 
     public static void main(String[] args) {
-        Menu();
+        while (online) {
+            System.out.println("---------------------------------");
+            System.out.println("  SELAMAT DATANG DI BANK JALI !");
+            System.out.println("---------------------------------");
+            while (!menu) {
+                Login();
+            }
+            while (menu) {
+                Menu();
+            }
+        }
     }
 
     static void Menu() {
@@ -47,5 +60,28 @@ public class ATM {
             case 8:
             default:
         }
+    }
+
+    static int Login() {
+        System.out.print("Masukkan ID Anda  : ");
+        String inputId = scan.next();
+        System.out.print("Masukkan PIN Anda : ");
+        int inputPin = scan.nextInt();
+        scan.nextLine();
+        for (int i = 0; i < infoAkun.length; i++) {
+            if (inputId.equals(infoAkun[i][0]) && inputPin == nominal[i][0]) {
+                user = i;
+                System.out.println("------------------------------");
+                System.out.println("\tLogin Berhasil !");
+                System.out.println("------------------------------");
+                menu = true;
+            }
+        }
+        if (!menu) {
+            System.out.println("------------------------------");
+            System.out.println("\tLogin Gagal !");
+            System.out.println("------------------------------");
+        }
+        return user;
     }
 }
