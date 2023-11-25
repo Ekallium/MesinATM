@@ -51,6 +51,8 @@ public class ATM {
         scan.nextLine();
         switch (pilihan) {
             case 1:
+                infoAkun();
+                break;
             case 2:
                 tariktunai();
                 break;
@@ -85,7 +87,13 @@ public class ATM {
             System.out.println("------------------------------");
         }
     }
-
+    static void infoAkun() {
+        System.out.println("====================================");
+        System.out.println("Nama     : " + infoAkun[user][1]);
+        System.out.println("Rekening : " + nominal[user][2]);
+        System.out.println("Saldo    : Rp" + nominal[user][1]);
+        System.out.println("====================================");
+    }
     static void tariktunai() {
         System.out.println("---------------------------------------------");
         System.out.print("Jumlah Uang Yang Ingin Anda Tarik : ");
@@ -109,5 +117,4 @@ public class ATM {
             System.out.println("---------------------------------------------");
             System.out.println("Saldo Anda Tidak Mencukupi");
         }
-    }
 }
