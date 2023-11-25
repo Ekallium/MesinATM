@@ -13,6 +13,7 @@ public class ATM {
             { 181104, 1000000, 23417602 },
             { 170405, 1000000, 23417603 }
     };
+    static String history[][] = new String[3][200];
     static boolean menu = false;
     static boolean online = true;
     static int user = -1;
@@ -67,6 +68,8 @@ public class ATM {
                 Pembayaran();
                 break;
             case 6:
+                MutasiRekening();
+                break;
             case 7:
             case 8:
             default:
@@ -119,9 +122,9 @@ public class ATM {
                 System.out.println("Nominal     : Rp" + tarik);
                 System.out.println("Keterangaan : Tarik Tunai");
                 String catatanTransaksi = "Keterangan : Tarik Tunai" +
-                                        "\nNominal    : Rp" + tarik;
-                                history[user][jumlahTransaksi] = catatanTransaksi;
-                                jumlahTransaksi++;
+                        "\nNominal    : Rp" + tarik;
+                history[user][jumlahTransaksi] = catatanTransaksi;
+                jumlahTransaksi++;
             } else {
                 System.out.println("---------------------------------------");
                 System.out.println("Penarikan harus kelipatan Rp50.000");
@@ -141,17 +144,17 @@ public class ATM {
             if (setor > 0) {
                 nominal[user][1] += setor;
                 System.out.println("------------------------------------------------");
-                            System.out.println("            STRUK ATM BANK JALI");
-                            System.out.println("------------------------------------------------");
-                            System.out.println("Nama         : " + infoAkun[user][1]);
-                            System.out.println("No Rekening  : " + nominal[user][2]);
-                            System.out.println("Nominal      : Rp" + setor);
-                            System.out.println("Keterangan   : Setor Tunai");
-                            System.out.println("------------------------------------------------");
-                            String catatanTransaksi = "Keterangan : Setor Tunai" +
-                                    "\nNominal    : Rp" + setor;
-                            history[user][jumlahTransaksi] = catatanTransaksi;
-                            jumlahTransaksi++;
+                System.out.println("            STRUK ATM BANK JALI");
+                System.out.println("------------------------------------------------");
+                System.out.println("Nama         : " + infoAkun[user][1]);
+                System.out.println("No Rekening  : " + nominal[user][2]);
+                System.out.println("Nominal      : Rp" + setor);
+                System.out.println("Keterangan   : Setor Tunai");
+                System.out.println("------------------------------------------------");
+                String catatanTransaksi = "Keterangan : Setor Tunai" +
+                        "\nNominal    : Rp" + setor;
+                history[user][jumlahTransaksi] = catatanTransaksi;
+                jumlahTransaksi++;
             } else {
                 System.out.println("-----------------------------------------------------");
                 System.out.println("Harap masukkan nominal yang valid !");
@@ -251,8 +254,8 @@ public class ATM {
                 String catatanTransaksi = "Keterangan : Pembayaran Listrik" +
                         "\nNomor Meter: " + tokenListrik +
                         "\nNominal    : Rp" + nomPembayaranL;
-                        history[user][jumlahTransaksi] = catatanTransaksi;
-                        jumlahTransaksi++;
+                history[user][jumlahTransaksi] = catatanTransaksi;
+                jumlahTransaksi++;
             } else {
                 System.out.println("------------------------------------------------");
                 System.out.println("Saldo Anda tidak mencukupi untuk pembayaran ini.");
@@ -281,8 +284,8 @@ public class ATM {
                 String catatanTransaksi = "Keterangan : Pembayaran PDAM" +
                         "\nNomor Meter: " + noPDAM +
                         "\nNominal    : Rp" + nomPembayaranP;
-                          history[user][jumlahTransaksi] = catatanTransaksi;
-                          jumlahTransaksi++;
+                history[user][jumlahTransaksi] = catatanTransaksi;
+                jumlahTransaksi++;
             } else {
                 System.out.println("------------------------------------------------");
                 System.out.println("Saldo Anda tidak mencukupi untuk pembayaran ini.");
@@ -290,6 +293,18 @@ public class ATM {
         } else {
             System.out.println("------------------------------------------------");
             System.out.println("Input tidak valid");
+        }
+    }
+
+    static void MutasiRekening() {
+        System.out.println("====================================");
+        System.out.println("          HISTORY TRANSAKSI");
+        System.out.println("------------------------------------");
+        for (String transaksi : history[user]) {
+            if (transaksi != null) {
+                System.out.println(transaksi);
+                System.out.println("====================================");
+            }
         }
     }
 }
