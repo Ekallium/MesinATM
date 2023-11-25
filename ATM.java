@@ -51,10 +51,17 @@ public class ATM {
         scan.nextLine();
         switch (pilihan) {
             case 1:
+                infoAkun();
+                break;
             case 2:
+                tariktunai();
+                break;
             case 3:
+                SetorTunai();
+                break;
             case 4:
             case 5:
+                Pembayaran();
             case 6:
             case 7:
             case 8:
@@ -62,7 +69,7 @@ public class ATM {
         }
     }
 
-    static int Login() {
+    static void Login() {
         System.out.print("Masukkan ID Anda  : ");
         String inputId = scan.next();
         System.out.print("Masukkan PIN Anda : ");
@@ -82,6 +89,136 @@ public class ATM {
             System.out.println("\tLogin Gagal !");
             System.out.println("------------------------------");
         }
-        return user;
+    }
+
+    static void infoAkun() {
+        System.out.println("====================================");
+        System.out.println("Nama     : " + infoAkun[user][1]);
+        System.out.println("Rekening : " + nominal[user][2]);
+        System.out.println("Saldo    : Rp" + nominal[user][1]);
+        System.out.println("====================================");
+    }
+
+    static void tariktunai() {
+        System.out.println("---------------------------------------------");
+        System.out.print("Jumlah Uang Yang Ingin Anda Tarik : ");
+        int tarik = scan.nextInt();
+        scan.nextLine();
+        if (tarik <= nominal[user][1] - 50000) {
+            if (tarik % 50000 == 0 && tarik > 0) {
+                nominal[user][1] -= tarik;
+                System.out.println("---------------------------------------------");
+                System.out.println("            STRUK ATM BANK JALI          ");
+                System.out.println("---------------------------------------------");
+                System.out.println("Nama        : " + infoAkun[user][1]);
+                System.out.println("No Rekening : " + nominal[user][2]);
+                System.out.println("Nominal     : Rp" + tarik);
+                System.out.println("Keterangaan : Tarik Tunai");
+            } else {
+                System.out.println("---------------------------------------");
+                System.out.println("Penarikan harus kelipatan Rp50.000");
+            }
+        } else {
+            System.out.println("---------------------------------------------");
+            System.out.println("Saldo Anda Tidak Mencukupi");
+        }
+    }
+
+    static void SetorTunai() {
+        System.out.println("-----------------------------------------------------");
+        System.out.print("Jumlah uang yang ingin Anda setorkan : Rp");
+        int setor = scan.nextInt();
+        scan.nextLine();
+        if (setor % 50000 == 0) {
+            if (setor > 0) {
+                nominal[user][1] += setor;
+            } else {
+                System.out.println("-----------------------------------------------------");
+                System.out.println("Harap masukkan nominal yang valid !");
+            }
+        } else {
+            System.out.println("-----------------------------------------------------");
+            System.out.println("Penyetoran tunai harus kelipatan Rp50.000");
+        }
+    }
+
+    static void Pembayaran() {
+        System.out.println("\t||=================||");
+        System.out.println("\t|| MENU PEMBAYARAN ||");
+        System.out.println("\t|| 1. Listrik      ||");
+        System.out.println("\t|| 2. PDAM         ||");
+        System.out.println("\t||=================||");
+        System.out.print("Masukan Input : ");
+        int menuPembayaran = scan.nextInt();
+        scan.nextLine();
+        if (menuPembayaran == 1) {
+            System.out.println("------------------------------------");
+            System.out.println("\tPembayaran Listrik");
+            System.out.println("------------------------------------");
+            System.out.print("Masukkan ID Pelanggan       : ");
+            int tokenListrik = scan.nextInt();
+            System.out.print("Masukkan nominal Pembayaran : Rp");
+            int nomPembayaranL = scan.nextInt();
+            scan.nextLine();
+            if (nomPembayaranL <= nominal[user][1] - 50000 && nomPembayaranL > 0) {
+                nominal[user][1] -= nomPembayaranL;
+                System.out.println("------------------------------------------------");
+                System.out.println("            STRUK ATM BANK JALI");
+                System.out.println("------------------------------------------------");
+                System.out.println("Nama        : " + infoAkun[user][1]);
+                System.out.println("No Rekening : " + nominal[user][2]);
+                System.out.println("Nominal     : Rp" + nomPembayaranL);
+                System.out.println("Keterangan  : Pembayaran Listrik");
+                System.out.println("------------------------------------------------");
+                System.out.println("Nomor Meter : " + tokenListrik);
+                System.out.println("Sisa saldo  : Rp" + nominal[user][1]);
+                System.out.printf("Token       :");
+                int min = 1000;
+                int max = 9999;
+                for (int x = 0; x < 5; x++) {
+                    int random = (int) (Math.random() * (max - min + 1) + min);
+                    System.out.print("-");
+                    System.out.print(random);
+                }
+                System.out.println();
+                String catatanTransaksi = "Keterangan : Pembayaran Listrik" +
+                        "\nNomor Meter: " + tokenListrik +
+                        "\nNominal    : Rp" + nomPembayaranL;
+            } else {
+                System.out.println("------------------------------------------------");
+                System.out.println("Saldo Anda tidak mencukupi untuk pembayaran ini.");
+            }
+        } else if (menuPembayaran == 2) {
+            System.out.println("------------------------------------");
+            System.out.println("\tPembayaran PDAM");
+            System.out.println("------------------------------------");
+            System.out.print("Masukkan No PDAM Anda       : ");
+            int noPDAM = scan.nextInt();
+            System.out.print("Masukkan Nominal Pembayaran : Rp");
+            int nomPembayaranP = scan.nextInt();
+            scan.nextLine();
+            if (nomPembayaranP < nominal[user][1] - 50000 && nomPembayaranP > 0) {
+                nominal[user][1] -= nomPembayaranP;
+                System.out.println("------------------------------------------------");
+                System.out.println("            STRUK ATM BANK JALI");
+                System.out.println("------------------------------------------------");
+                System.out.println("Nama         : " + infoAkun[user][1]);
+                System.out.println("No Rekening  : " + nominal[user][2]);
+                System.out.println("Nominal      : Rp" + nomPembayaranP);
+                System.out.println("Keterangan   : Pembayaran PDAM");
+                System.out.println("------------------------------------------------");
+                System.out.println("No.Pelanggan : " + noPDAM);
+                System.out.println("Sisa saldo   : Rp" + nominal[user][1]);
+                String catatanTransaksi = "Keterangan : Pembayaran PDAM" +
+                        "\nNomor Meter: " + noPDAM +
+                        "\nNominal    : Rp" + nomPembayaranP;
+            } else {
+                System.out.println("------------------------------------------------");
+                System.out.println("Saldo Anda tidak mencukupi untuk pembayaran ini.");
+            }
+        } else {
+            System.out.println("------------------------------------------------");
+            System.out.println("Input tidak valid");
+        }
     }
 }
