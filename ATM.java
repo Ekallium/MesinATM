@@ -118,6 +118,10 @@ public class ATM {
                 System.out.println("No Rekening : " + nominal[user][2]);
                 System.out.println("Nominal     : Rp" + tarik);
                 System.out.println("Keterangaan : Tarik Tunai");
+                String catatanTransaksi = "Keterangan : Tarik Tunai" +
+                                        "\nNominal    : Rp" + tarik;
+                                history[user][jumlahTransaksi] = catatanTransaksi;
+                                jumlahTransaksi++;
             } else {
                 System.out.println("---------------------------------------");
                 System.out.println("Penarikan harus kelipatan Rp50.000");
@@ -136,6 +140,18 @@ public class ATM {
         if (setor % 50000 == 0) {
             if (setor > 0) {
                 nominal[user][1] += setor;
+                System.out.println("------------------------------------------------");
+                            System.out.println("            STRUK ATM BANK JALI");
+                            System.out.println("------------------------------------------------");
+                            System.out.println("Nama         : " + infoAkun[user][1]);
+                            System.out.println("No Rekening  : " + nominal[user][2]);
+                            System.out.println("Nominal      : Rp" + setor);
+                            System.out.println("Keterangan   : Setor Tunai");
+                            System.out.println("------------------------------------------------");
+                            String catatanTransaksi = "Keterangan : Setor Tunai" +
+                                    "\nNominal    : Rp" + setor;
+                            history[user][jumlahTransaksi] = catatanTransaksi;
+                            jumlahTransaksi++;
             } else {
                 System.out.println("-----------------------------------------------------");
                 System.out.println("Harap masukkan nominal yang valid !");
@@ -180,6 +196,8 @@ public class ATM {
                             "\nNama       : " + infoAkun[user][1] +
                             "\nRekening   : " + nominal[user][2] +
                             "\nNominal    : Rp" + transfer;
+                    history[user][jumlahTransaksi] = catatanTransaksi;
+                    history[tujuan][jumlahTransaksi] = catatanTransaksiMasuk;
                     jumlahTransaksi++;
                     break;
                 } else {
@@ -233,6 +251,8 @@ public class ATM {
                 String catatanTransaksi = "Keterangan : Pembayaran Listrik" +
                         "\nNomor Meter: " + tokenListrik +
                         "\nNominal    : Rp" + nomPembayaranL;
+                        history[user][jumlahTransaksi] = catatanTransaksi;
+                        jumlahTransaksi++;
             } else {
                 System.out.println("------------------------------------------------");
                 System.out.println("Saldo Anda tidak mencukupi untuk pembayaran ini.");
@@ -261,6 +281,8 @@ public class ATM {
                 String catatanTransaksi = "Keterangan : Pembayaran PDAM" +
                         "\nNomor Meter: " + noPDAM +
                         "\nNominal    : Rp" + nomPembayaranP;
+                          history[user][jumlahTransaksi] = catatanTransaksi;
+                          jumlahTransaksi++;
             } else {
                 System.out.println("------------------------------------------------");
                 System.out.println("Saldo Anda tidak mencukupi untuk pembayaran ini.");
