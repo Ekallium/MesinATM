@@ -54,6 +54,8 @@ public class ATM {
                 infoAkun();
                 break;
             case 2:
+                tariktunai();
+                break;
             case 3:
             case 4:
             case 5:
@@ -85,7 +87,6 @@ public class ATM {
             System.out.println("------------------------------");
         }
     }
-
     static void infoAkun() {
         System.out.println("====================================");
         System.out.println("Nama     : " + infoAkun[user][1]);
@@ -93,4 +94,27 @@ public class ATM {
         System.out.println("Saldo    : Rp" + nominal[user][1]);
         System.out.println("====================================");
     }
+    static void tariktunai() {
+        System.out.println("---------------------------------------------");
+        System.out.print("Jumlah Uang Yang Ingin Anda Tarik : ");
+        int tarik = scan.nextInt();
+        scan.nextLine();
+        if (tarik <= nominal[user][1] - 50000) {
+            if (tarik % 50000 == 0 && tarik > 0) {
+                nominal[user][1] -= tarik;
+                System.out.println("---------------------------------------------");
+                System.out.println("            STRUK ATM BANK JALI          ");
+                System.out.println("---------------------------------------------");
+                System.out.println("Nama        : " + infoAkun[user][1]);
+                System.out.println("No Rekening : " + nominal[user][2]);
+                System.out.println("Nominal     : Rp" + tarik);
+                System.out.println("Keterangaan : Tarik Tunai");
+            } else {
+                System.out.println("---------------------------------------");
+                System.out.println("Penarikan harus kelipatan Rp50.000");
+            }
+        } else {
+            System.out.println("---------------------------------------------");
+            System.out.println("Saldo Anda Tidak Mencukupi");
+        }
 }
