@@ -51,6 +51,8 @@ public class ATM {
         scan.nextLine();
         switch (pilihan) {
             case 1:
+                infoAkun();
+                break;
             case 2:
             case 3:
             case 4:
@@ -83,5 +85,13 @@ public class ATM {
             System.out.println("------------------------------");
         }
         return user;
+    }
+
+    static void infoAkun() {
+        System.out.println("====================================");
+        System.out.println("Nama     : " + infoAkun[user][1]);
+        System.out.println("Rekening : " + nominal[user][2]);
+        System.out.println("Saldo    : Rp" + nominal[user][1]);
+        System.out.println("====================================");
     }
 }
