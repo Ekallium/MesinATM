@@ -62,6 +62,7 @@ public class ATM {
             case 4:
             case 5:
                 Pembayaran();
+                break;
             case 6:
             case 7:
             case 8:
