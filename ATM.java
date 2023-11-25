@@ -14,6 +14,7 @@ public class ATM {
             { 170405, 1000000, 23417603 }
     };
     static boolean menu = false;
+    static boolean exitMenu = false;
     static boolean online = true;
     static int user = -1;
     static int jumlahTransaksi = 0;
