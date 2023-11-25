@@ -1,7 +1,24 @@
 import java.util.Scanner;
 
 public class ATM {
+
+    static Scanner scan = new Scanner(System.in);
+    static String[][] infoAkun = {
+            { "Ekal" , "Moch. Haikal Putra Muhajir" },
+            { "Alya" , "Alya Ajeng Ayu" },
+            { "Erfin", "Erfin Jauhari Dwi Brian" }
+    };
+    static int[][] nominal = {
+            { 332005, 1000000, 23417601 },
+            { 181104, 1000000, 23417602 },
+            { 170405, 1000000, 23417603 }
+    };
+
     public static void main(String[] args) {
+        Menu();
+    }
+
+    static void Menu() {
         System.out.println("====================================");
         System.out.println("     ||======================||");
         System.out.println("     ||     PILIHAN MENU     ||");
