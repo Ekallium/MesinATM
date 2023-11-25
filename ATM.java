@@ -146,6 +146,51 @@ public class ATM {
         }
     }
 
+    static void TransferDana() {
+        System.out.println("---------------------------------------------");
+        System.out.print("Masukkan rekening tujuan : ");
+        int rekening = scan.nextInt();
+        scan.nextLine();
+        for (int tujuan = 0; tujuan < infoAkun.length; tujuan++) {
+            if (rekening == nominal[tujuan][2] && rekening != nominal[user][2]) {
+                System.out.println("---------------------------------------------");
+                System.out.print("Jumlah Uang Yang Ingin Anda Transfer : ");
+                int transfer = scan.nextInt();
+                scan.nextLine();
+                if (transfer < nominal[user][1] && transfer > 0) {
+                    System.out.println("---------------------------------------------");
+                    System.out.println("           STRUK ATM BANK JALI        ");
+                    System.out.println("---------------------------------------------");
+                    System.out.println("Nama          : " + infoAkun[user][1]);
+                    System.out.println("No Rekening   : " + nominal[user][2]);
+                    System.out.println("Keterangan    : Transfer Dana");
+                    System.out.println("---------------------------------------------");
+                    System.out.println("Nama          : " + infoAkun[tujuan][1]);
+                    System.out.println("No Rekening   : " + nominal[tujuan][2]);
+                    System.out.println("Keterangan    : " + transfer);
+                    System.out.println("---------------------------------------------");
+                    nominal[user][1] -= transfer;
+                    nominal[tujuan][1] += transfer;
+
+                    String catatanTransaksi = "Keterangan : Transfer Dana" +
+                            "\nNama       : " + infoAkun[tujuan][1] +
+                            "\nRekening   : " + nominal[tujuan][2] +
+                            "\nNominal    : Rp" + transfer;
+                    String catatanTransaksiMasuk = "Keteragan : Dana Masuk" +
+                            "\nNama       : " + infoAkun[user][1] +
+                            "\nRekening   : " + nominal[user][2] +
+                            "\nNominal    : Rp" + transfer;
+                    jumlahTransaksi++;
+                    break;
+                } else {
+                    System.out.println("---------------------------------------------");
+                    System.out.println("Saldo Anda Tidak Mencukupi");
+                    break;
+                }
+            }
+        }
+    }
+
     static void Pembayaran() {
         System.out.println("\t||=================||");
         System.out.println("\t|| MENU PEMBAYARAN ||");
@@ -223,51 +268,6 @@ public class ATM {
         } else {
             System.out.println("------------------------------------------------");
             System.out.println("Input tidak valid");
-        }
-    }
-
-    static void TransferDana(){
-        System.out.println("---------------------------------------------");
-        System.out.print("Masukkan rekening tujuan : ");
-        int rekening = scan.nextInt();
-        scan.nextLine();
-        for (int tujuan = 0; tujuan < infoAkun.length; tujuan++){
-            if (rekening == nominal[tujuan][2] && rekening != nominal[user][2]){
-                System.out.println("---------------------------------------------");
-                System.out.print("Jumlah Uang Yang Ingin Anda Transfer : ");
-                int transfer = scan.nextInt();
-                scan.nextLine();
-                if (transfer < nominal[user][1] && transfer > 0){
-                    System.out.println("---------------------------------------------");
-                    System.out.println("           STRUK ATM BANK JALI        ");
-                    System.out.println("---------------------------------------------");
-                    System.out.println("Nama          : " + infoAkun[user][1]);
-                    System.out.println("No Rekening   : " + nominal[user][2]);
-                    System.out.println("Keterangan    : Transfer Dana");
-                    System.out.println("---------------------------------------------");
-                    System.out.println("Nama          : " + infoAkun[tujuan][1]);
-                    System.out.println("No Rekening   : " + nominal[tujuan][2]);
-                    System.out.println("Keterangan    : " + transfer);
-                    System.out.println("---------------------------------------------");
-                    nominal[user][1] -= transfer;
-                    nominal[tujuan][1] += transfer;
-
-                    String catatanTransaksi = "Keterangan : Transfer Dana" +
-                            "\nNama       : " +infoAkun[tujuan][1] +
-                            "\nRekening   : " +nominal[tujuan][2] +
-                            "\nNominal    : Rp" + transfer;
-                    String catatanTransaksiMasuk = "Keteragan : Dana Masuk" +
-                            "\nNama       : " +infoAkun[user][1] +
-                            "\nRekening   : " +nominal[user][2] +
-                            "\nNominal    : Rp" + transfer; 
-                    jumlahTransaksi++;
-                    break;
-                } else {
-                    System.out.println("---------------------------------------------");
-                    System.out.println("Saldo Anda Tidak Mencukupi");
-                    break;
-                }
-            }
         }
     }
 }
