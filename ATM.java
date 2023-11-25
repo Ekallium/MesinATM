@@ -64,7 +64,7 @@ public class ATM {
         }
     }
 
-    static int Login() {
+    static void Login() {
         System.out.print("Masukkan ID Anda  : ");
         String inputId = scan.next();
         System.out.print("Masukkan PIN Anda : ");
@@ -84,10 +84,9 @@ public class ATM {
             System.out.println("\tLogin Gagal !");
             System.out.println("------------------------------");
         }
-        return user;
     }
 
-    static int SetorTunai() {
+    static void SetorTunai() {
         System.out.println("-----------------------------------------------------");
         System.out.print("Jumlah uang yang ingin Anda setorkan : Rp");
         int setor = scan.nextInt();
@@ -103,6 +102,5 @@ public class ATM {
             System.out.println("-----------------------------------------------------");
             System.out.println("Penyetoran tunai harus kelipatan Rp50.000");
         }
-        return nominal[user][1];
     }
 }
