@@ -343,7 +343,6 @@ public class ATM {
             nominal[user][0] = pinBaru;
         }
     }
-
     static void Exit() {
         System.out.println("-----------------------------------------------------");
         System.out.print("Apakah anda ingin melakukan transaksi lain (Y/T) ? : ");
