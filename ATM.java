@@ -57,6 +57,8 @@ public class ATM {
                 tariktunai();
                 break;
             case 3:
+                SetorTunai();
+                break;
             case 4:
             case 5:
             case 6:
@@ -87,6 +89,7 @@ public class ATM {
             System.out.println("------------------------------");
         }
     }
+
     static void infoAkun() {
         System.out.println("====================================");
         System.out.println("Nama     : " + infoAkun[user][1]);
@@ -94,6 +97,7 @@ public class ATM {
         System.out.println("Saldo    : Rp" + nominal[user][1]);
         System.out.println("====================================");
     }
+
     static void tariktunai() {
         System.out.println("---------------------------------------------");
         System.out.print("Jumlah Uang Yang Ingin Anda Tarik : ");
@@ -117,4 +121,23 @@ public class ATM {
             System.out.println("---------------------------------------------");
             System.out.println("Saldo Anda Tidak Mencukupi");
         }
+    }
+
+    static void SetorTunai() {
+        System.out.println("-----------------------------------------------------");
+        System.out.print("Jumlah uang yang ingin Anda setorkan : Rp");
+        int setor = scan.nextInt();
+        scan.nextLine();
+        if (setor % 50000 == 0) {
+            if (setor > 0) {
+                nominal[user][1] += setor;
+            } else {
+                System.out.println("-----------------------------------------------------");
+                System.out.println("Harap masukkan nominal yang valid !");
+            }
+        } else {
+            System.out.println("-----------------------------------------------------");
+            System.out.println("Penyetoran tunai harus kelipatan Rp50.000");
+        }
+    }
 }
