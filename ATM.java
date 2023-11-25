@@ -16,6 +16,7 @@ public class ATM {
     static String history[][] = new String[3][200];
     static boolean menu = false;
     static boolean online = true;
+    static boolean exitMenu = false;
     static int user = -1;
     static int jumlahTransaksi = 0;
 
@@ -29,6 +30,9 @@ public class ATM {
             }
             while (menu) {
                 Menu();
+                while (exitMenu) {
+                    Exit();
+                }
             }
         }
     }
@@ -54,27 +58,39 @@ public class ATM {
         switch (pilihan) {
             case 1:
                 infoAkun();
+                exitMenu = true;
                 break;
             case 2:
                 tariktunai();
+                exitMenu = true;
                 break;
             case 3:
                 SetorTunai();
+                exitMenu = true;
                 break;
             case 4:
                 TransferDana();
+                exitMenu = true;
                 break;
             case 5:
                 Pembayaran();
+                exitMenu = true;
                 break;
             case 6:
                 MutasiRekening();
+                exitMenu = true;
                 break;
             case 7:
                 GantiPin();
+                exitMenu = true;
                 break;
             case 8:
+                exitMenu = true;
+                break;
             default:
+                System.out.println("====================================");
+                System.out.println("Harap Masukkan Menu Yang Valid !");
+                System.out.println("====================================");
         }
     }
 
@@ -197,7 +213,7 @@ public class ATM {
                             "\nNama       : " + infoAkun[tujuan][1] +
                             "\nRekening   : " + nominal[tujuan][2] +
                             "\nNominal    : Rp" + transfer;
-                    String catatanTransaksiMasuk = "Keteragan : Dana Masuk" +
+                    String catatanTransaksiMasuk = "Keterangan : Dana Masuk" +
                             "\nNama       : " + infoAkun[user][1] +
                             "\nRekening   : " + nominal[user][2] +
                             "\nNominal    : Rp" + transfer;
@@ -325,6 +341,27 @@ public class ATM {
             System.out.println("PIN ATM berhasil diganti menjadi " + pinBaru);
             System.out.println("========================================");
             nominal[user][0] = pinBaru;
+        }
+    }
+    static void Exit() {
+        System.out.println("-----------------------------------------------------");
+        System.out.print("Apakah anda ingin melakukan transaksi lain (Y/T) ? : ");
+        char exit = scan.nextLine().charAt(0);
+        System.out.println("-----------------------------------------------------");
+        if (exit == 'y' || exit == 'Y') {
+            menu = false;
+            exitMenu = false;
+        } else if (exit == 't' || exit == 'T') {
+            System.out.println("--------------------------------------------");
+            System.out.println("  TERIMAKASIH TELAH MENGGUNAKAN BANK JALI");
+            System.out.println("--------------------------------------------");
+            online = false;
+            menu = false;
+            exitMenu = false;
+        } else {
+            System.out.println("---------------------------------");
+            System.out.println("Masukkan input yang valid (Y/T) !");
+            System.out.println("---------------------------------");
         }
     }
 }
