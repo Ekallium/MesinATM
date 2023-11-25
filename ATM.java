@@ -71,6 +71,8 @@ public class ATM {
                 MutasiRekening();
                 break;
             case 7:
+                GantiPin();
+                break;
             case 8:
             default:
         }
@@ -305,6 +307,24 @@ public class ATM {
                 System.out.println(transaksi);
                 System.out.println("====================================");
             }
+        }
+    }
+
+    static void GantiPin() {
+        System.out.println("\n---------------------------------");
+        System.out.print("Masukkan PIN ATM baru: ");
+        int pinBaru = scan.nextInt();
+        scan.nextLine();
+        if (pinBaru > 999999 || pinBaru < 100000) {
+            System.out.println("PIN baru harus 6 digit");
+        } else if (pinBaru == nominal[user][0]) {
+            System.out.println("PIN lama dan PIN baru tidak boleh sama");
+        } else {
+            System.out.println("========================================");
+            System.out.println("PENGGANTIAN PIN BERHASIL !");
+            System.out.println("PIN ATM berhasil diganti menjadi " + pinBaru);
+            System.out.println("========================================");
+            nominal[user][0] = pinBaru;
         }
     }
 }
