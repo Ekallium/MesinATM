@@ -64,7 +64,7 @@ public class ATM {
         }
     }
 
-    static int Login() {
+    static void Login() {
         System.out.print("Masukkan ID Anda  : ");
         String inputId = scan.next();
         System.out.print("Masukkan PIN Anda : ");
@@ -84,7 +84,6 @@ public class ATM {
             System.out.println("\tLogin Gagal !");
             System.out.println("------------------------------");
         }
-        return user;
     }
 
     static void infoAkun() {
