@@ -93,15 +93,16 @@ public class ATM {
         int setor = scan.nextInt();
         scan.nextLine();
         if (setor % 50000 == 0) {
-            if(setor > 0){
-            nominal[user][1] += setor;
+            if (setor > 0) {
+                nominal[user][1] += setor;
             } else {
-            System.out.println("-----------------------------------------------------");
-            System.out.println("Harap masukkan nominal yang valid !");
+                System.out.println("-----------------------------------------------------");
+                System.out.println("Harap masukkan nominal yang valid !");
             }
-        } else{
+        } else {
             System.out.println("-----------------------------------------------------");
-        System.out.println("Penyetoran tunai harus kelipatan Rp50.000");}
+            System.out.println("Penyetoran tunai harus kelipatan Rp50.000");
+        }
         return nominal[user][1];
     }
 }
